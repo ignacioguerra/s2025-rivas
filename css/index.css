@@ -1,0 +1,410 @@
+/* -------- ESTILO GENERAL -------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Merriweather', serif;
+  /* para texto */
+  text-transform: uppercase;
+  color: #f2f2f2;
+  background-color: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  overflow-y: scroll;
+}
+
+header {
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header h1 {
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+header h1,
+.descripcion h3 {
+  font-family: 'Merriweather', sans-serif;
+  /* para títulos */
+}
+
+p {
+  font-family: 'Merriweather', sans-serif;
+}
+
+nav a {
+  color: #f2f2f2;
+  text-decoration: none;
+  margin-left: 1rem;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #8de4af;
+}
+
+/* -------- SLIDER -------- */
+.slider {
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  height: 100vh;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+/* PARA AGREGAR IMAGEN EN SLIDER MODIFICAR (1-4): */
+.slides {
+  display: flex;
+  width: 500%;
+  /* cada slide suma 100% */
+  height: 100%;
+  transition: transform 0.8s ease;
+  padding-top: 0px;
+}
+
+/* PARA AGREGAR IMAGEN EN SLIDER MODIFICAR (2-4): */
+.slide {
+  width: 20%;
+  /* 100% / X slides */
+  /* probar la mitad del resultado, tener un diptico */
+  height: 100%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5);
+  transition: transform 0.8s ease;
+}
+
+/* PARA AGREGAR IMAGEN EN SLIDER MODIFICAR (3-4): */
+/* -------- SLIDE ACTIVA ZOOM -------- */
+#slide1:checked~.slides .s1 img,
+#slide2:checked~.slides .s2 img,
+#slide3:checked~.slides .s3 img,
+#slide4:checked~.slides .s4 img,
+#slide5:checked~.slides .s5 img {
+  animation: zoom 15s ease-in-out infinite alternate;
+}
+
+/* -------- ANIMACIÓN ZOOM -------- */
+@keyframes zoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.1);
+  }
+}
+
+/* PARA AGREGAR IMAGEN EN SLIDER MODIFICAR (4-4): */
+/* -------- TRANSFORMACIÓN SLIDE -------- */
+#slide1:checked~.slides {
+  /* dividir 100% / cant de slides (img) e ir asignando porcentajes desde 0 */
+  transform: translateX(0);
+}
+
+#slide2:checked~.slides {
+  transform: translateX(-20%);
+}
+
+#slide3:checked~.slides {
+  transform: translateX(-40%);
+}
+
+#slide4:checked~.slides {
+  transform: translateX(-60%);
+}
+
+#slide5:checked~.slides {
+  transform: translateX(-80%);
+}
+
+
+/* ocultamos input de navegacion originales */
+input[name="slides"] {
+  display: none;
+}
+
+/* ocultamos controles de audio originales */
+audio {
+  display: none;
+}
+
+/* -------- AUDIO BOX -------- */
+.audio-box {
+  font-family: 'Montserrat', sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.audio-box h2 {
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: #8de4af;
+  margin-bottom: 1.5rem;
+}
+
+.audio-controls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* 5 columnas iguales */
+  grid-template-rows: 1fr;
+  /* 1 fila */
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.audio-controls button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.audio-controls button:hover {
+  background: #8de4af;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #8de4af80, 0 0 25px #8de4af40;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 15px #8de4af80, 0 0 25px #8de4af40;
+  }
+
+  50% {
+    box-shadow: 0 0 25px #8de4afc0, 0 0 40px #8de4af80;
+  }
+}
+
+/* Símbolos de botones */
+.play::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 15px;
+  width: 0;
+  height: 0;
+  border-left: 15px solid #8de4af;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.pause::before,
+.pause::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  width: 6px;
+  height: 20px;
+  background: #8de4af;
+}
+
+.pause::before {
+  left: 16px;
+}
+
+.pause::after {
+  right: 16px;
+}
+
+.stop::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  width: 20px;
+  height: 20px;
+  background: #8de4af;
+}
+
+.stop:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #8de4af80, 0 0 25px #8de4af40;
+}
+
+.volume::before {
+  content: '';
+  position: absolute;
+  top: 33%;
+  left: 35%;
+  width: 0;
+  height: 0;
+  border-left: 12px solid #8de4af;
+  /* base del parlante */
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  transform: rotate(180deg);
+}
+
+.note {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+/* -------- NAVEGACIÓN -------- */
+.navigation {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 5;
+  /* encima de las img del slider */
+}
+
+.bar {
+  width: 14px;
+  height: 14px;
+  border-radius: 30%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.bar:hover {
+  background: #8de4af;
+  transform: scale(1.2);
+  box-shadow: 0 0 10px #8de4af80, 0 0 20px #8de4af40;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* -------- DESCRIPCIÓN -------- */
+.descripcion {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 1rem;
+}
+
+.descripcion h3 {
+  color: #8de4af;
+  font-weight: 400;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.descripcion p {
+  color: #ccc;
+  line-height: 1.6;
+}
+
+/* -------- FOOTER -------- */
+footer {
+  margin-top: auto;
+  padding: 1rem 0;
+  width: 100%;
+  background: rgba(20, 20, 20, 0.8);
+  font-size: 0.9rem;
+}
+
+/* -------- RESPONSIVO -------- */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .slider {
+    height: 55vh;
+  }
+
+  .audio-controls button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .play::before {
+    content: '';
+    position: absolute;
+    left: 35%;
+    top: 26%;
+    width: 0;
+    height: 0;
+    border-left: 15px solid #8de4af;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }
+
+  .stop::before {
+    content: '';
+    position: absolute;
+    top: 28%;
+    left: 28%;
+    width: 18px;
+    height: 18px;
+    background: #8de4af;
+  }
+
+  .volume::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 0;
+    height: 0;
+    border-left: 12px solid #8de4af;
+    /* base del parlante */
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    transform: rotate(180deg);
+  }
+
+  .pause::before,
+  .pause::after {
+    content: '';
+    position: absolute;
+    top: 25%;
+    width: 6px;
+    height: 20px;
+    background: #8de4af;
+  }
+
+  .pause::before {
+    left: 30%;
+  }
+
+  .pause::after {
+    right: 30%;
+  }
+
+  .descripcion {
+    padding: 0 1rem;
+  }
+}
