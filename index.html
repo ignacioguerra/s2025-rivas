@@ -36,10 +36,11 @@
                     <div class="audio-box">
                         <h2>Pieza N°1</h2>
                         <div class="audio-controls">
-                            <button class="play"></button>
-                            <button class="pause"></button>
-                            <button class="stop"></button>
-                            <button class="volume"></button>
+                            <!-- Agregar información accesible para los controles de audio, se puede ocultar por CSS -->
+                            <button class="play">Reproducir</button>
+                            <button class="pause">Pausar</button>
+                            <button class="stop">Detener</button>
+                            <button class="volume">Silenciar</button>
                         </div>
                         <audio id="audio1" src="audio/audio 1.mp3"></audio>
                         <p class="note">(audio 1)</p>
@@ -51,10 +52,10 @@
                     <div class="audio-box">
                         <h2>Pieza N°2</h2>
                         <div class="audio-controls">
-                            <button class="play"></button>
-                            <button class="pause"></button>
-                            <button class="stop"></button>
-                            <button class="volume"></button>
+                            <button class="play">Reproducir</button>
+                            <button class="pause">Pausar</button>
+                            <button class="stop">Detener</button>
+                            <button class="volume">Silenciar</button>
                         </div>
                         <audio id="audio2" src="audio/audio 2.mp3"></audio>
                         <p class="note">(audio 2)</p>
@@ -66,10 +67,10 @@
                     <div class="audio-box">
                         <h2>Pieza N°3</h2>
                         <div class="audio-controls">
-                            <button class="play"></button>
-                            <button class="pause"></button>
-                            <button class="stop"></button>
-                            <button class="volume"></button>
+                            <button class="play">Reproducir</button>
+                            <button class="pause">Pausar</button>
+                            <button class="stop">Detener</button>
+                            <button class="volume">Silenciar</button>
                         </div>
                         <audio id="audio3" src="audio/audio 3.mp3"></audio>
                         <p class="note">(audio 3)</p>
@@ -86,8 +87,11 @@
             </div>
         </section>
 
+        <!-- Esto funciona mejor como introducción, sería bueno que esté arriba (Con CSS se puede posicionar abajo del slider). Quizás con header en lugar de section. -->
         <section class="descripcion">
-            <h3>Atmósferas de un mundo distópico</h3>
+            <!-- Como h3, salvo por la división en sections, queda como si estuviera hablando de la Pieza Nº3 -->
+             <!-- Si se aplica la sugerencia de mover esto arriba, quedaria este como h2 y las piezas como h3. -->
+            <h2>Atmósferas de un mundo distópico</h2>
             <p>Sumergite en paisajes sonoros envolventes que despiertan la imaginación y la memoria.</p>
         </section>
     </main>

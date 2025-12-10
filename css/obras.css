@@ -95,7 +95,7 @@ main {
     overflow: hidden;
     border-radius: 20px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
-    cursor: pointer;
+    /* Este cursor sugiere que son elementos interactivos, pero al cliquear no ocurre nada */
     background: rgba(20, 20, 20, 0.6);
     backdrop-filter: blur(10px);
     transition: transform 0.3s ease;
